@@ -1,0 +1,32 @@
+{
+  "author": "Paul Querna <pquerna@apache.org>",
+  "contributors": [
+  ],
+  "name": "node-zk",
+  "description": "Node.js CQL driver for Apache Cassandra",
+  "version": "0.1.0",
+  "homepage": "https://github.com/pquerna/node-zk",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/pquerna/node-zk.git"
+  },
+  "main": "lib/zk",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "whiskey --tests \"test/test_recordio.js\""
+  },
+  "engines": {
+    "node": ">= 0.4.0"
+  },
+  "dependencies" : {
+    "node-int64": ">= 0.3.0",
+    "generic-pool" : ">= 1.0.5"
+  },
+  "devDependencies": {},
+  "licenses" : [
+    { "type" : "Apache",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html" }
+  ]
+}
