@@ -86,3 +86,26 @@ exports['test_longs'] = function(test, assert) {
 
   test.finish();
 };
+
+
+exports['test_buffers'] = function(test, assert) {
+  var arc1,
+      arc1buf,
+      arc2,
+      newBuf;
+
+  arc1 = new Archive();
+  arc1.serialize_buffer(new Buffer("hello world"));
+  arc1.serialize_buffer(new Buffer("end universe"));
+
+  arc1buf = arc1.toBuffer();
+  assert.isNotNull(arc1buf);
+
+  arc2 = new Archive();
+  arc2.fromBuffer(arc1buf);
+
+  assert.equal("hello world", arc2.deserialize_buffer().toString());
+  assert.equal("end universe", arc2.deserialize_buffer().toString());
+
+  test.finish();
+};
