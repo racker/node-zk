@@ -109,3 +109,37 @@ exports['test_buffers'] = function(test, assert) {
 
   test.finish();
 };
+
+exports['test_vectors'] = function(test, assert) {
+  var arc1,
+      arc1buf,
+      arc2,
+      newBuf,
+      arr = ['foo', 'bar', 'blah', 'moooooooooooo'],
+      i, j;
+
+  arc1 = new Archive();
+  arc1.serialize_int(200);
+  arc1.serialize_start_vector(arr.length);
+  for (i = 0; i < arr.length; i++) {
+    arc1.serialize_string(arr[i]);
+  }
+  arc1.serialize_end_vector();
+  arc1.serialize_int(555);
+
+  arc1buf = arc1.toBuffer();
+  assert.isNotNull(arc1buf);
+
+  arc2 = new Archive();
+  arc2.fromBuffer(arc1buf);
+  assert.equal(200, arc2.deserialize_int());
+  i = arc2.deserialize_start_vector();
+  assert.equal(i, arr.length);
+  for (j = 0; j < i; j++) {
+    assert.equal(arr[j], arc2.deserialize_string());
+  }
+  arc2.deserialize_end_vector();
+  assert.equal(555, arc2.deserialize_int());
+
+  test.finish();
+};
