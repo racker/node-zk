@@ -16,6 +16,7 @@
  */
 
 var Archive = require('../lib/recordio').Archive;
+var Int64 = require('node-int64');
 
 exports['test_simple'] = function(test, assert) {
   var origBuffer = new Buffer('foo'),
@@ -25,7 +26,7 @@ exports['test_simple'] = function(test, assert) {
       newBuf;
 
   arc1 = new Archive();
-  arc1.serialize_long(42);
+  arc1.serialize_int(42);
   arc1.serialize_buffer(origBuffer);
 
   arc1buf = arc1.toBuffer();
@@ -34,7 +35,7 @@ exports['test_simple'] = function(test, assert) {
   arc2 = new Archive();
 
   arc2.fromBuffer(arc1buf);
-  assert.equal(42, arc2.deserialize_long());
+  assert.equal(42, arc2.deserialize_int());
   newBuf = arc2.deserialize_buffer();
   assert.isNotNull(newBuf);
   assert.equal(3, newBuf.length);
@@ -53,14 +54,35 @@ exports['test_strings'] = function(test, assert) {
   arc1.serialize_string("end universe");
 
   arc1buf = arc1.toBuffer();
-  console.error(arc1buf);
-  assert.isNotNull(newBuf);
+  assert.isNotNull(arc1buf);
 
   arc2 = new Archive();
   arc2.fromBuffer(arc1buf);
 
   assert.equal("hello world", arc2.deserialize_string());
   assert.equal("end universe", arc2.deserialize_string());
+
+  test.finish();
+};
+
+exports['test_longs'] = function(test, assert) {
+  var arc1,
+      arc1buf,
+      arc2,
+      bignum = new Int64("1152921504606846976");
+
+  arc1 = new Archive();
+  arc1.serialize_long(52);
+  arc1.serialize_long(bignum);
+
+  arc1buf = arc1.toBuffer();
+  assert.isNotNull(arc1buf);
+
+  arc2 = new Archive();
+  arc2.fromBuffer(arc1buf);
+
+  assert.equal(52, arc2.deserialize_long());
+  assert.equal("2921504606846976", arc2.deserialize_long().toOctetString());
 
   test.finish();
 };
