@@ -3,7 +3,7 @@
   "contributors": [
   ],
   "name": "node-zk",
-  "description": "Node.js CQL driver for Apache Cassandra",
+  "description": "Node.js Zookeeper Client",
   "version": "0.1.0",
   "homepage": "https://github.com/pquerna/node-zk",
   "repository": {
@@ -15,7 +15,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "whiskey --tests \"test/test_recordio.js\""
+    "test": "whiskey --tests \"tests/test_recordio.js\""
   },
   "engines": {
     "node": ">= 0.4.0"
@@ -24,7 +24,9 @@
     "node-int64": ">= 0.3.0",
     "generic-pool" : ">= 1.0.5"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "whiskey": ">= 0.5.1"
+  },
   "licenses" : [
     { "type" : "Apache",
       "url" : "http://www.apache.org/licenses/LICENSE-2.0.html" }
