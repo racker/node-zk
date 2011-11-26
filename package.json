@@ -15,7 +15,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "whiskey --tests \"tests/test_recordio.js\""
+    "test": "make test"
   },
   "engines": {
     "node": ">= 0.4.0"
