@@ -1,6 +1,7 @@
 TESTS := \
 	tests/test_recordio.js \
-	tests/test_zookeeper_jute.js
+	tests/test_zookeeper_jute.js \
+	tests/test_zkconnection.js
 
 PATH := ./node_modules/.bin:$(PATH)
 
