@@ -33,11 +33,6 @@ exports['test_ZkConnection'] = function(test, assert) {
     conn.destroy();
   }, 2000);
 
-  setTimeout(function() {
-    console.error(conn);
-    console.error(conn._conn);
-  }, 3000);
-
   conn.on('end', function() {
     console.error('got end!');
     conn.destroy();
