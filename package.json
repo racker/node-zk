@@ -22,7 +22,8 @@
   },
   "dependencies" : {
     "node-int64": ">= 0.3.0",
-    "generic-pool" : ">= 1.0.5"
+    "generic-pool" : ">= 1.0.5",
+    "bufferlist": ">= 0.1.0"
   },
   "devDependencies": {
     "whiskey": ">= 0.5.1"
