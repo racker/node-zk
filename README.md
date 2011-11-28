@@ -2,9 +2,7 @@
 
 ## TODO:
 
-* Finish Jute recordio
-* Add Whiskey tests
-* Port basic zookeeper.jute structures.
+* Figure out PING
 * Low level ZK api.
  * Single Connection
 * Pooled / Cluster client connection.
