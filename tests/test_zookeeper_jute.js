@@ -25,6 +25,9 @@ exports['test_ConnectRequest'] = function(test, assert) {
   b = cr.serialize();
 
   cr2 = new ConnectRequest();
+
+  assert.equal(b.length, cr2.speculative_deserialize(b));
+
   cr2.deserialize(b);
   assert.equal(cr.timeOut, cr2.timeOut);
   test.finish();
